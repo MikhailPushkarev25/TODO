@@ -8,7 +8,7 @@ function add() {
     $.ajax({
         cache: false,
         type: 'POST',
-        url: 'http://localhost:8080/list/todo',
+        url: 'http://localhost:8080/list/item.do',
         data: JSON.stringify(arr)
     }).done(function () {
         showAll();

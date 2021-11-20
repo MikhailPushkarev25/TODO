@@ -1,3 +1,7 @@
+<%@ page import="ru.job4j.model.User" %>
+<%@ page import="ru.job4j.store.Hiber" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,11 +23,10 @@
     <title>TODO</title>
     <script src="js/add.js"></script>
     <script src="js/status.js"></script>
-    <script src="js/show.js"></script>
+    <script src="js/shows.js"></script>
 </head>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 <body>
-
 <form>
     <div class="form-group">
         <div class="container-fluid">
@@ -38,7 +41,18 @@
         </div>
     </div>
 </form>
-
+<div class="row">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out value="${user.name}"/></a>
+        </li>
+        <c:if test="${User != null}">
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/logout.do">Выйти</a>
+            </li>
+        </c:if>
+    </ul>
+</div>
 <br>
 <br>
 <div class="form-group form-check">
@@ -51,6 +65,7 @@
     <tr>
         <th scope="col">#</th>
         <th scope="col">Задача</th>
+        <th scope="col">Автор</th>
         <th scope="col">Дата создания</th>
         <th scope="col">Статус</th>
     </tr>

@@ -1,9 +1,8 @@
 function showAll() {
     let status = $('#checkbox1').is(":checked");
     $.ajax({
-        cache: false,
         type: 'GET',
-        url: 'http://localhost:8080/list/todo',
+        url: 'http://localhost:8080/list/item.do',
         contentType: 'application/json'
     }).done(function (data) {
         let result = '<tbody id="bodyTableId">';
@@ -17,6 +16,7 @@ function showAll() {
             result += "<input type=\"hidden\" value=\"" + item.description + "\" id=\"userId" + item.id + "\"/>";
             result += "<th>" + row + "</th>";
             result += "<th>" + item.description + "</th>";
+            result += "<th>" + item.user + "</th>";
             let date = new Date(item.created);
             const dtFormat = new Intl.DateTimeFormat('ru', {
                 hour: "numeric",

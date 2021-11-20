@@ -10,7 +10,7 @@ function changeStatus(data) {
         $.ajax({
             cache: false,
             type: 'POST',
-            url: 'http://localhost:8080/list/todo',
+            url: 'http://localhost:8080/list/item.do',
             data: JSON.stringify(arr),
             contentType: 'application/json'
         }).done(function () {
