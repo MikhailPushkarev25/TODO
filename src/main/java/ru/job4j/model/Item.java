@@ -3,6 +3,7 @@ package ru.job4j.model;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,7 +14,8 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String description;
-    private Timestamp created = new Timestamp(System.currentTimeMillis());
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
     private Boolean done;
 
     @ManyToOne(cascade = {CascadeType.ALL})
