@@ -17,6 +17,7 @@ function showAll() {
             result += "<th>" + row + "</th>";
             result += "<th>" + item.description + "</th>";
             result += "<th>" + item.user + "</th>";
+            result += "<th>" + item.category.name + "</th>";
             let date = new Date(item.created);
             const dtFormat = new Intl.DateTimeFormat('ru', {
                 hour: "numeric",

@@ -44,6 +44,9 @@
 <div class="row">
     <ul class="nav">
         <li class="nav-item">
+            <a class="nav-link" href="<%=request.getContextPath()%>/create.jsp"> <c:out value="${category.name}"/></a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out value="${user.name}"/></a>
         </li>
         <c:if test="${User != null}">
@@ -65,6 +68,7 @@
     <tr>
         <th scope="col">#</th>
         <th scope="col">Задача</th>
+        <th scope="col">Категория</th>
         <th scope="col">Автор</th>
         <th scope="col">Дата создания</th>
         <th scope="col">Статус</th>

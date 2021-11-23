@@ -7,9 +7,11 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
+import ru.job4j.model.Category;
 import ru.job4j.model.Item;
 import ru.job4j.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -56,6 +58,23 @@ public class Hiber implements Store {
     }
 
     @Override
+    public void addNewItem(Item item, String[] cat) {
+        try (Session session = sf.openSession()) {
+            session.beginTransaction();
+
+            for (String id : cat) {
+                Category category = session.find(Category.class, Integer.parseInt(id));
+                item.addCategories(category);
+            }
+            session.save(item);
+
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            sf.getCurrentSession().getTransaction().rollback();
+        }
+    }
+
+    @Override
     public Item create(Item item) {
         return this.tx(session -> {
              session.save(item);
@@ -87,6 +106,21 @@ public class Hiber implements Store {
         return this.tx(
                 session -> session.createQuery("from ru.job4j.model.Item").list()
         );
+    }
+
+    @Override
+    public List<Category> findAllCategory() {
+        List<Category> rsl = new ArrayList<>();
+        try (Session session = sf.openSession()) {
+            session.beginTransaction();
+
+            rsl = session.createQuery("select c from Category c", Category.class).list();
+
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            sf.getCurrentSession().getTransaction().rollback();
+        }
+        return rsl;
     }
 
     @Override
