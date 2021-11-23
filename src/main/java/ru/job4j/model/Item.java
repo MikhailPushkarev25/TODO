@@ -84,6 +84,10 @@ public class Item {
         this.categories = categories;
     }
 
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
     public List<Category> getCategories() {
         return categories;
     }
@@ -120,13 +124,6 @@ public class Item {
         this.description = description;
     }
 
-    public Timestamp getCreated() {
-        return created;
-    }
-
-    public void setCreated(Timestamp created) {
-        this.created = created;
-    }
 
     public Boolean getDone() {
         return done;
